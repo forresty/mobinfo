@@ -50,7 +50,17 @@ module MobInfo
     first_7digits, record_offset, type = binary_search(prefix)
 
     if type
-      record_at_offset(record_offset)
+      isp = case type.to_i
+      when 1 then '移动'
+      when 2 then '联通'
+      when 3 then '电信'
+      when 4 then '电信虚拟运营商'
+      when 5 then '联通虚拟运营商'
+      when 6 then '移动虚拟运营商'
+      else '未知运营商'
+      end
+
+      record_at_offset(record_offset).merge(isp: isp, prefix: first_7digits)
     end
   end
 end
