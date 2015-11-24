@@ -42,9 +42,9 @@ module MobInfo
   end
 
   def self.lookup(number)
-    if number =~ /\+86-/
-      number = number[4..-1]
-    end
+    number = number.to_s
+    number = number[4..-1] if number =~ /\+86-/
+
     prefix = number[0...7].to_i
 
     first_7digits, record_offset, type = binary_search(prefix)
