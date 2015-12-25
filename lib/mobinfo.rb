@@ -61,6 +61,15 @@ module MobInfo
       end
 
       record_at_offset(record_offset).merge(isp: isp, prefix: first_7digits)
+    else
+      {
+        province: "未知",
+        city: "未知",
+        postal_code: "未知",
+        region_code: "未知",
+        isp: "未知",
+        prefix: '未知'
+      }
     end
   end
 end
